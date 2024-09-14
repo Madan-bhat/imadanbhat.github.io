@@ -9,18 +9,6 @@ const Navbar = () => {
           href="#projects"
           className="hover:text-gray-300 transition duration-300 text-lg md:text-base"
         >
-          Projects
-        </a>
-        <a
-          href="#about"
-          className="hover:text-gray-300 transition duration-300 text-lg md:text-base"
-        >
-          About
-        </a>
-        <a
-          href="#contact"
-          className="hover:text-gray-300 transition duration-300 text-lg md:text-base"
-        >
           Contact
         </a>
       </div>

@@ -5,16 +5,19 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+
+
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
+  
+
   }
 }
 
-/* Apply parallax effect */
 .section {
   position: relative;
   overflow: hidden;
@@ -31,21 +34,24 @@
   z-index: -1;
 }
 
-.parallax {
-  transform: translateY(0);
-  transition: transform 0.3s ease-in-out;
-}
-
-/* Add this if you need to fine-tune responsiveness */
 @media (max-width: 768px) {
   .hidden-mobile {
     display: none;
   }
 }
 
-.parallax.scrolled {
-  transform: translateY(30px); /* Adjust based on how much you want the section to move up */
+@keyframes moveLight {
+  0% {
+    transform: translateX(-200px) translateY(0px);
+  }
+  50% {
+    transform: translateX(100vw) translateY(100px);
+  }
+  100% {
+    transform: translateX(-200px) translateY(0px);
+  }
 }
+
 
 body {
   color: var(--foreground);
