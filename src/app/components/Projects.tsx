@@ -92,7 +92,7 @@ const Projects = () => {
   };
 
   return (
-    <section id="projects" className="py-14 bg-black text-white">
+    <section id="projects" className="py-14 -mb-32 bg-black text-white">
       <div className="max-w-6xl mx-auto px-4">
         <motion.h2
           initial={{ opacity: 0, y: -50 }}

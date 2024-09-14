@@ -12,7 +12,7 @@ const DevProfile = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-black text-white ">
+    <div className="min-h-screen -mb-32 flex flex-col items-center justify-center bg-black text-white ">
       <h1 className="text-center text-transparent select-none bg-gradient-to-r bg-clip-text from-[#b597f6]  to-[#abc9e9]  text-3xl md:text-4xl font-bold mb-8">
         Have an idea in mind?
       </h1>
