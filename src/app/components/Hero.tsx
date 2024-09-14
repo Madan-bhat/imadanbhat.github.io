@@ -5,19 +5,13 @@ import InstagramIcon from "@/app/images/insta.svg";
 import TwitterIcon from "@/app/images/twitter.svg";
 import GitHubIcon from "@/app/images/github.svg";
 import ThreadsIcon from "@/app/images/thread.svg";
-import Navbar from "./Navbar"; // Import the Navbar component
 
 const Hero = () => {
   return (
     <section className="relative w-full min-h-screen flex flex-col items-center justify-center bg-black text-white overflow-hidden">
-      {/* Navbar */}
-      {/* <Navbar /> */}
-
-      {/* Light effect */}
       <div className="absolute inset-0 bg-gradient-to-r h-20 blur-3xl -top-20 from-blue-300 via-teal-400 to-pink-500 opacity-50"></div>
 
       <div className="relative z-10 flex flex-col md:flex-row items-center justify-center w-full h-full px-6 md:px-12">
-        {/* Text Content */}
         <div className="flex flex-col mt-8 items-center md:items-start text-center md:text-left w-full md:w-1/2 space-y-4">
           <motion.h1
             initial={{ opacity: 0, y: -100 }}
@@ -46,7 +40,6 @@ const Hero = () => {
               href="https://www.instagram.com/madan___2007"
               whileHover={{
                 scale: 1.2,
-                // boxShadow: "0 0 10px rgba(255, 255, 255, 0.5)",
               }}
               whileTap={{ scale: 0.9 }}
               className="transition-transform duration-300"
@@ -63,7 +56,6 @@ const Hero = () => {
               href="https://x.com/imadanbhat"
               whileHover={{
                 scale: 1.2,
-                // boxShadow: "0 0 10px rgba(255, 255, 255, 0.5)",
               }}
               whileTap={{ scale: 0.9 }}
               className="transition-transform duration-300"
@@ -80,7 +72,6 @@ const Hero = () => {
               href="https://github.com/Madan-Bhat"
               whileHover={{
                 scale: 1.2,
-                // boxShadow: "0 0 10px rgba(255, 255, 255, 0.5)",
               }}
               whileTap={{ scale: 0.9 }}
               className="transition-transform duration-300"
@@ -97,7 +88,6 @@ const Hero = () => {
               href="https://www.threads.net/@madan___2007"
               whileHover={{
                 scale: 1.2,
-                // boxShadow: "0 0 10px rgba(255, 255, 255, 0.5)",
               }}
               whileTap={{ scale: 0.9 }}
               className="transition-transform duration-300"
@@ -112,11 +102,11 @@ const Hero = () => {
             </motion.a>
           </div>
 
-          <div className="flex flex-col md:flex-row gap-4 mt-8">
+          <div className="flex flex-col py-2 px-4 -ml-4 md:flex-row gap-4 ">
             <motion.a
               href="#projects"
-              className="px-4 py-2 md:px-6 md:py-3 bg-white text-black font-semibold rounded-md shadow-lg hover:bg-gray-200 transition duration-300 text-sm md:text-base"
-              whileHover={{ scale: 1.1 }}
+              className="px-4 py-2 ml-1 md:px-6 md:py-3 bg-white text-black font-semibold rounded-md shadow-lg hover:bg-gray-200 transition duration-300 text-sm md:text-base"
+              whileHover={{ scale: 1.025 }}
               whileTap={{ scale: 0.95 }}
             >
               View My Projects
@@ -124,7 +114,7 @@ const Hero = () => {
             <motion.a
               href="mailto:imadanbhat@gmail.com"
               className="px-4 py-2 md:px-6 md:py-3 border-2 border-white text-white font-semibold rounded-md hover:bg-gray-800 transition duration-300 text-sm md:text-base"
-              whileHover={{ scale: 1.1 }}
+              whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
               Get In Touch
