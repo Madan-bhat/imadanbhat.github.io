@@ -1,5 +1,11 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
+import photogram from "@/app/images/photogram.jpeg";
+import unilink from "@/app/images/unilink.jpeg";
+import event_management from "@/app/images/event_management.jpeg";
+import shopping_app from "@/app/images/shopping_app.jpeg";
+
+import Image from "next/image";
 
 const projects = [
   {
@@ -7,28 +13,28 @@ const projects = [
     description: "A chat app built using Firebase and React Native.",
     category: "Frontend",
     technologies: ["React Native", "TailwindCSS"],
-    imageUrl: "/path-to-your-image/unilink.png",
+    imageUrl: unilink,
   },
   {
     name: "Photogram",
     description: "Instagram clone made when I was in 8th grade.",
     category: "Frontend",
     technologies: ["React Native", "Firebase"],
-    imageUrl: "/path-to-your-image/photogram.png",
+    imageUrl: photogram,
   },
   {
     name: "Shopping App",
     description: "Currently working on this project.",
     category: "Frontend",
     technologies: ["React Native"],
-    imageUrl: "/path-to-your-image/shoppingapp.png",
+    imageUrl: shopping_app,
   },
   {
     name: "Event Management App",
     description: "An app to manage events efficiently.",
     category: "DevOps",
     technologies: ["React Native", "Tailwindcss"],
-    imageUrl: "/path-to-your-image/eventapp.png",
+    imageUrl: event_management,
   },
 ];
 
@@ -92,21 +98,21 @@ const Projects = () => {
           initial={{ opacity: 0, y: -50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1 }}
-          className="text-center text-3xl md:text-4xl font-bold mb-10"
+          className="text-center text-transparent select-none bg-gradient-to-r bg-clip-text from-green-500 via-teal-500  text-3xl md:text-4xl font-bold mb-8"
         >
           Things I've Built
         </motion.h2>
 
-        <div className="flex justify-center mb-6 space-x-4">
+        <div className="flex justify-center mt-0 mb-6 space-x-4">
           {categories.map((category, index) => (
             <button
               key={index}
               onClick={() => setSelectedCategory(category)}
               className={`px-3 py-1 font-semibold rounded-md ${
                 selectedCategory === category
-                  ? "bg-purple-700 text-white"
+                  ? "bg-white text-black"
                   : "bg-gray-700 text-gray-300"
-              } hover:bg-purple-600 transition-colors`}
+              } hover:bg-gray-500 transition-colors`}
             >
               {category}
             </button>
@@ -132,11 +138,13 @@ const Projects = () => {
               }}
             >
               {/* Project Image */}
-              <div className="h-[120px] w-full mb-3">
-                <img
+              <div className="relative h-[120px] w-full mb-3 image-wrapper">
+                <Image
                   src={project.imageUrl}
                   alt={project.name}
-                  className="object-cover w-full h-full rounded-md"
+                  layout="fill"
+                  objectFit="cover"
+                  className="rounded-md image-blur"
                 />
               </div>
 

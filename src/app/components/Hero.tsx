@@ -34,8 +34,8 @@ const Hero = () => {
             transition={{ duration: 1, delay: 0.5 }}
             className="text-xl md:text-xl mb-6 max-w-lg text-white"
           >
-            I’m a passionate developer with 2 years of experience in creating
-            seamless and intuitive digital experiences. I specialize in ReactJS,
+            I’m a passionate developer with 3 years of experience in creating
+            seamless and intuitive digital experiences. I am good at ReactJS,
             React Native, and JavaScript, and I’m always eager to learn and
             build innovative solutions.
           </motion.p>

@@ -1,6 +1,11 @@
 import { motion } from "framer-motion";
+import Image from "next/image";
+import Me_Small from "@/app/images/me_small.webp";
+import { FaCheck } from "react-icons/fa";
 
 const About = () => {
+  const offerings = ["Responsive web development", "Mobile app development"];
+
   return (
     <section
       id="about"
@@ -17,10 +22,12 @@ const About = () => {
               transition={{ duration: 0.8 }}
               className="relative"
             >
-              <img
-                src="/path-to-your-avatar/avatar.png"
+              <Image
+                src={Me_Small}
+                height={108}
+                width={108}
                 alt="Madan Bhat"
-                className="w-20 h-20 rounded-full object-cover shadow-lg"
+                className=" rounded-full object-cover shadow-lg"
               />
             </motion.div>
 
@@ -28,7 +35,7 @@ const About = () => {
             <div style={{ maxWidth: "800px" }}>
               <h3 className="text-2xl font-bold text-white mb-2">Madan Bhat</h3>
               <p className="text-gray-400 mb-4">
-                I'm a dedicated software developer with over 5 years of
+                I'm a dedicated software developer with over 3 years of
                 experience. My expertise lies in building intuitive mobile and
                 web applications that prioritize user experience and
                 performance. I’m passionate about bringing ideas to life through
@@ -61,45 +68,20 @@ const About = () => {
           </div>
 
           {/* Right: Things I Offer */}
-          <div className="mt-8 md:mt-0 md:ml-8 w-full md:w-auto border border-gray-500 p-6 rounded-md">
-            <h4 className="text-lg font-semibold text-gray-200 mb-6 uppercase tracking-wide text-center">
+          <div className="mt-8 md:mt-0 md:ml-8 w-full md:w-auto border border-gray-800 p-6 rounded-md bg-gray-900 shadow-lg">
+            <h4 className="text-xl font-bold text-gray-200 mb-4 uppercase tracking-wider text-center">
               Things I Offer
             </h4>
-            <div className="flex flex-col space-y-4">
-              <p className="text-sm text-gray-300 flex items-center">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-4 w-4 text-green-500 mr-2"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  strokeWidth="2"
+            <div className="space-y-3">
+              {offerings.map((offering, index) => (
+                <p
+                  key={index}
+                  className="text-base text-gray-300 flex items-center"
                 >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M5 13l4 4L19 7"
-                  />
-                </svg>
-                Responsive web development
-              </p>
-              <p className="text-sm text-gray-300 flex items-center">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-4 w-4 text-green-500 mr-2"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M5 13l4 4L19 7"
-                  />
-                </svg>
-                Mobile app development
-              </p>
+                  <FaCheck className="text-green-500 mr-3" />
+                  {offering}
+                </p>
+              ))}
             </div>
           </div>
         </div>

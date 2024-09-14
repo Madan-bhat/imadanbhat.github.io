@@ -57,7 +57,9 @@ const Skills = () => {
   return (
     <section className="py-16 bg-black text-white border-t border-gray-700">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h2 className="text-4xl font-extrabold mb-4">My Skills</h2>
+        <h2 className="text-center text-transparent select-none bg-gradient-to-r bg-clip-text from-[#ffff] via=[#via-[#aab2ff]]   to-[#eca0ff]  text-3xl md:text-4xl font-bold mb-8">
+          My Skills
+        </h2>
         <p className="text-gray-400 mb-12 max-w-xl mx-auto">
           These are the technologies I specialize in to build scalable,
           high-quality applications.
