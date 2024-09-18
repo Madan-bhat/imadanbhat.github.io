@@ -1,11 +1,12 @@
-import { motion } from "framer-motion";
-import { useState } from "react";
+import React, { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
+import { ArrowUpRight } from "lucide-react";
+
 import photogram from "@/app/images/photogram.jpeg";
 import unilink from "@/app/images/unilink.jpeg";
 import event_management from "@/app/images/event_management.jpeg";
 import shopping_app from "@/app/images/shopping_app.jpeg";
-
-import Image from "next/image";
 
 const projects = [
   {
@@ -41,21 +42,25 @@ const projects = [
 const categories = ["All", "Frontend"];
 
 const containerVariants = {
-  hidden: { opacity: 0, y: 50 },
+  hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    y: 0,
     transition: {
-      staggerChildren: 0.2,
-      ease: "easeInOut",
-      duration: 0.8,
+      staggerChildren: 0.1,
     },
   },
 };
 
 const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+  hidden: { y: 20, opacity: 0 },
+  visible: {
+    y: 0,
+    opacity: 1,
+    transition: {
+      type: "spring",
+      stiffness: 100,
+    },
+  },
 };
 
 const Projects = () => {
@@ -66,131 +71,90 @@ const Projects = () => {
       ? projects
       : projects.filter((project) => project.category === selectedCategory);
 
-  const handleMouseMove = (
-    e: React.MouseEvent<HTMLDivElement>,
-    index: number
-  ) => {
-    const card = document.getElementById(`card-${index}`);
-    if (card) {
-      const rect = card.getBoundingClientRect();
-      const x = e.clientX - rect.left; // Mouse X relative to card
-      const y = e.clientY - rect.top; // Mouse Y relative to card
-      const midX = rect.width / 2;
-      const midY = rect.height / 2;
-      const rotateX = ((y - midY) / midY) * 10; // Tilt factor for Y-axis
-      const rotateY = ((x - midX) / midX) * 10; // Tilt factor for X-axis
-
-      card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
-    }
-  };
-
-  const handleMouseLeave = (index: number) => {
-    const card = document.getElementById(`card-${index}`);
-    if (card) {
-      card.style.transform = "rotateX(0deg) rotateY(0deg)"; // Reset tilt on mouse leave
-    }
-  };
-
   return (
-    <section id="projects" className="py-14 bg-black text-white">
-      <div className="max-w-6xl mx-auto px-4">
+    <section id="projects" className="py-20 bg-black text-white">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.h2
           initial={{ opacity: 0, y: -50 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1 }}
-          className="text-center text-transparent select-none bg-gradient-to-r bg-clip-text from-green-500 via-teal-500  text-3xl md:text-4xl font-bold mb-8"
+          transition={{ duration: 0.5 }}
+          className="text-center text-4xl md:text-5xl font-bold mb-4"
         >
           Things I've Built
         </motion.h2>
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.2, duration: 0.5 }}
+          className="text-center text-lg text-gray-400 mb-12"
+        >
+          A showcase of my projects and experiments
+        </motion.p>
 
-        <div className="flex justify-center mt-0 mb-6 space-x-4">
+        <div className="flex justify-center mb-12 space-x-4">
           {categories.map((category, index) => (
-            <button
+            <motion.button
               key={index}
               onClick={() => setSelectedCategory(category)}
-              className={`px-3 py-1 font-semibold rounded-md ${
+              className={`px-4 py-2 rounded-full font-medium transition-all duration-300 ${
                 selectedCategory === category
                   ? "bg-white text-black"
-                  : "bg-gray-700 text-gray-300"
-              } hover:bg-gray-500 transition-colors`}
+                  : "bg-gray-800 text-gray-300 hover:bg-gray-700"
+              }`}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
             >
               {category}
-            </button>
+            </motion.button>
           ))}
         </div>
 
-        <motion.div
-          className="flex flex-wrap justify-center gap-y-8"
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
-        >
-          {filteredProjects.map((project, index) => (
-            <motion.div
-              key={index}
-              id={`card-${index}`}
-              variants={itemVariants}
-              onMouseMove={(e) => handleMouseMove(e, index)}
-              onMouseLeave={() => handleMouseLeave(index)}
-              className="relative bg-gray-900 p-5 rounded-lg shadow-lg border border-gray-800 hover:shadow-2xl transition-shadow duration-300 h-[320px] w-[280px] mx-4 flex flex-col justify-between"
-              style={{
-                borderImage: "linear-gradient(135deg, #000, #102b3f) 1",
-              }}
-            >
-              {/* Project Image */}
-              <div className="relative h-[120px] w-full mb-3 image-wrapper">
-                <Image
-                  src={project.imageUrl}
-                  alt={project.name}
-                  layout="fill"
-                  objectFit="cover"
-                  className="rounded-md image-blur"
-                />
-              </div>
-
-              {/* Project Title and Description */}
-              <h3 className="text-lg font-bold mb-1 text-white">
-                {project.name}
-              </h3>
-              <p className="text-sm text-gray-400 mb-2">
-                {project.description}
-              </p>
-
-              {/* Tech Icons/Tags */}
-              <div className="flex space-x-2 mt-auto">
-                {project.technologies.map((tech, idx) => (
-                  <span
-                    key={idx}
-                    className="px-2 py-1 text-xs text-gray-100 bg-gray-800 rounded-full"
-                  >
-                    {tech}
-                  </span>
-                ))}
-              </div>
-
-              {/* Floating Button (Link to Project) */}
-              <motion.button
-                whileHover={{ scale: 1.1 }}
-                className="absolute top-4 right-4 text-white bg-gray-800 hover:bg-purple-600 p-2 rounded-full"
+        <AnimatePresence>
+          <motion.div
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+          >
+            {filteredProjects.map((project, index) => (
+              <motion.div
+                key={project.name}
+                variants={itemVariants}
+                layout
+                className="bg-gray-900 rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300"
               >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth="2"
-                  stroke="currentColor"
-                  className="w-4 h-4"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M15 12H3m0 0l4-4m-4 4l4 4m10-8v8m0 0l4-4m-4 4l4-4"
+                <div className="relative h-48">
+                  <Image
+                    src={project.imageUrl}
+                    alt={project.name}
+                    layout="fill"
+                    objectFit="cover"
+                    className="transition-transform duration-300 hover:scale-110"
                   />
-                </svg>
-              </motion.button>
-            </motion.div>
-          ))}
-        </motion.div>
+                  {/* <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300">
+                    <ArrowUpRight className="w-10 h-10 text-white" />
+                  </div> */}
+                </div>
+                <div className="p-6">
+                  <h3 className="text-xl font-semibold mb-2">{project.name}</h3>
+                  <p className="text-gray-400 text-sm mb-4">
+                    {project.description}
+                  </p>
+                  <div className="flex flex-wrap gap-2">
+                    {project.technologies.map((tech, idx) => (
+                      <span
+                        key={idx}
+                        className="px-3 py-1 text-xs font-medium bg-gray-800 rounded-full text-gray-300"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
+        </AnimatePresence>
       </div>
     </section>
   );

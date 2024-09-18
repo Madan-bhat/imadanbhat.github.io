@@ -14,7 +14,7 @@ export default function Home() {
         <Skills />
         <About />
         <Projects />
-        <DevProfile />
+        {/* <DevProfile /> */}
         <Footer />
       </main>
 

@@ -1,3 +1,4 @@
+import React from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import illustrationImage from "@/app/images/me.svg";
@@ -7,139 +8,124 @@ import GitHubIcon from "@/app/images/github.svg";
 import ThreadsIcon from "@/app/images/thread.svg";
 
 const Hero = () => {
+  const socialLinks = [
+    {
+      href: "https://www.instagram.com/madan___2007",
+      icon: InstagramIcon,
+      alt: "Instagram",
+    },
+    { href: "https://x.com/imadanbhat", icon: TwitterIcon, alt: "Twitter" },
+    { href: "https://github.com/Madan-Bhat", icon: GitHubIcon, alt: "GitHub" },
+    {
+      href: "https://www.threads.net/@madan___2007",
+      icon: ThreadsIcon,
+      alt: "Threads",
+    },
+  ];
+
   return (
     <section className="relative w-full min-h-screen flex flex-col items-center justify-center bg-black text-white overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-r h-20 blur-3xl -top-20 from-blue-300 via-teal-400 to-pink-500 opacity-50"></div>
 
-      <div className="relative z-10 flex flex-col md:flex-row items-center justify-center w-full h-full px-6 md:px-12">
-        <div className="flex flex-col mt-8 items-center md:items-start text-center md:text-left w-full md:w-1/2 space-y-4">
+      <div className="relative z-10 flex flex-col md:flex-row items-center justify-center w-full h-full px-4 sm:px-6 md:px-8 max-w-7xl mx-auto">
+        <div className="flex flex-col mt-8 items-center md:items-start text-center md:text-left w-full md:w-1/2 space-y-6">
           <motion.h1
-            initial={{ opacity: 0, y: -100 }}
+            initial={{ opacity: 0, y: -50 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.3 }}
-            className="  flex  w-fit bg-gradient-to-r from-blue-500 via-teal-500 to-pink-500 bg-clip-text text-6xl font-extrabold text-transparent select-none"
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="text-4xl sm:text-5xl md:text-6xl font-extrabold"
           >
-            Hi there, I am Madan Bhat
+            <span className="bg-gradient-to-r from-blue-400 via-teal-400 to-pink-400 bg-clip-text text-transparent">
+              Hi there, I'm
+            </span>
+            <br />
+            <span className="text-white">Madan Bhat</span>
           </motion.h1>
 
           <motion.p
-            initial={{ opacity: 0, y: -50 }}
+            initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.5 }}
-            className="text-xl md:text-xl mb-6 max-w-lg text-white"
+            transition={{ duration: 0.8, delay: 0.4 }}
+            className="text-base sm:text-lg md:text-xl mb-6 max-w-lg text-gray-300 leading-relaxed"
           >
-            I’m a passionate developer with 3 years of experience in creating
+            I'm a passionate developer with 3 years of experience in creating
             seamless and intuitive digital experiences. I am good at ReactJS,
-            React Native, and JavaScript, and I’m always eager to learn and
+            React Native, and JavaScript, and I'm always eager to learn and
             build innovative solutions.
           </motion.p>
 
-          {/* Social Media Buttons */}
-          <div className="flex space-x-4 mb-6">
-            <motion.a
-              href="https://www.instagram.com/madan___2007"
-              whileHover={{
-                scale: 1.2,
-              }}
-              whileTap={{ scale: 0.9 }}
-              className="transition-transform duration-300"
-            >
-              <Image
-                src={InstagramIcon}
-                alt="Instagram"
-                width={36}
-                height={36}
-                className="object-contain"
-              />
-            </motion.a>
-            <motion.a
-              href="https://x.com/imadanbhat"
-              whileHover={{
-                scale: 1.2,
-              }}
-              whileTap={{ scale: 0.9 }}
-              className="transition-transform duration-300"
-            >
-              <Image
-                src={TwitterIcon}
-                alt="Twitter"
-                width={36}
-                height={36}
-                className="object-contain"
-              />
-            </motion.a>
-            <motion.a
-              href="https://github.com/Madan-Bhat"
-              whileHover={{
-                scale: 1.2,
-              }}
-              whileTap={{ scale: 0.9 }}
-              className="transition-transform duration-300"
-            >
-              <Image
-                src={GitHubIcon}
-                alt="GitHub"
-                width={36}
-                height={36}
-                className="object-contain"
-              />
-            </motion.a>
-            <motion.a
-              href="https://www.threads.net/@madan___2007"
-              whileHover={{
-                scale: 1.2,
-              }}
-              whileTap={{ scale: 0.9 }}
-              className="transition-transform duration-300"
-            >
-              <Image
-                src={ThreadsIcon}
-                alt="Threads"
-                width={36}
-                height={36}
-                className="object-contain"
-              />
-            </motion.a>
-          </div>
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+            className="flex space-x-6 mb-8"
+          >
+            {socialLinks.map((link, index) => (
+              <motion.a
+                key={index}
+                href={link.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+                className="transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/20"
+              >
+                <Image
+                  src={link.icon}
+                  alt={link.alt}
+                  width={32}
+                  height={32}
+                  className="object-contain"
+                />
+              </motion.a>
+            ))}
+          </motion.div>
 
-          <div className="flex flex-col py-2 px-4 -ml-4 md:flex-row gap-4 ">
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.8 }}
+            className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto"
+          >
             <motion.a
               href="#projects"
-              className="px-4 py-2 ml-1 md:px-6 md:py-3 bg-white text-black font-semibold rounded-md shadow-lg hover:bg-gray-200 transition duration-300 text-sm md:text-base"
-              whileHover={{ scale: 1.025 }}
-              whileTap={{ scale: 0.95 }}
+              className="group relative px-6 py-3 bg-white text-black font-semibold rounded-md shadow-lg transition duration-300 text-center overflow-hidden"
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
             >
-              View My Projects
+              <span className="relative z-10">View My Projects</span>
+              <span className="absolute inset-0 bg-gray-200 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300"></span>
             </motion.a>
             <motion.a
               href="mailto:imadanbhat@gmail.com"
-              className="px-4 py-2 md:px-6 md:py-3 border-2 border-white text-white font-semibold rounded-md hover:bg-gray-800 transition duration-300 text-sm md:text-base"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+              className="group relative px-6 py-3 border-2 border-white text-white font-semibold rounded-md transition duration-300 text-center overflow-hidden"
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
             >
-              Get In Touch
+              <span className="relative z-10">Get In Touch</span>
+              <span className="absolute inset-0 bg-white transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300"></span>
+              <span className="absolute inset-0 bg-gray-800 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300 delay-75"></span>
             </motion.a>
-          </div>
+          </motion.div>
         </div>
 
-        {/* Image Content */}
-        <div className="w-full md:w-1/2 mt-8 md:mt-0 flex justify-center">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1.2 }}
-            transition={{ duration: 1 }}
-            className="relative w-full max-w-xs md:max-w-md h-64 md:h-[500px]"
-          >
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1.1 }}
+          transition={{ duration: 1 }}
+          className="w-full md:w-1/2 mt-12 md:mt-0 flex justify-center items-center"
+        >
+          <div className="relative w-full max-w-xs sm:max-w-sm md:max-w-md h-64 sm:h-80 md:h-[500px]">
             <Image
               src={illustrationImage}
-              alt="Illustration"
+              alt="Madan Bhat Illustration"
               layout="fill"
               objectFit="contain"
               quality={100}
               className="object-center"
             />
-          </motion.div>
-        </div>
+          </div>
+        </motion.div>
       </div>
     </section>
   );

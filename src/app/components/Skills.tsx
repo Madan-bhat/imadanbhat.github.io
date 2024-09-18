@@ -1,13 +1,12 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
-import NodeIcon from "@/app/images/nodejs.svg"; // Replace with actual path to your Node.js icon
-import ReactIcon from "@/app/images/react.svg"; // Replace with actual path to your React icon
-import ReactNativeIcon from "@/app/images/react-native.svg"; // Replace with actual path to your React Native icon
-import FirebaseIcon from "@/app/images/firebase.svg"; // Replace with actual path to your Firebase icon
-import NextJSIcon from "@/app/images/nextjs.svg"; // Replace with actual path to your Next.js icon
-import TailwindIcon from "@/app/images/tailwindcss.svg"; // Replace with actual path to your TailwindCSS icon
+import NodeIcon from "@/app/images/nodejs.svg";
+import ReactIcon from "@/app/images/react.svg";
+import ReactNativeIcon from "@/app/images/react-native.svg";
+import FirebaseIcon from "@/app/images/firebase.svg";
+import NextJSIcon from "@/app/images/nextjs.svg";
+import TailwindIcon from "@/app/images/tailwindcss.svg";
 
-// Define the skills array with descriptions
 const skills = [
   {
     name: "Node.js",
@@ -53,11 +52,11 @@ const skills = [
   },
 ];
 
-const Skills = () => {
+export default function Skills() {
   return (
     <section className="py-16 bg-black text-white border-t border-gray-700">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h2 className="text-center text-transparent select-none bg-gradient-to-r bg-clip-text from-[#ffff] via=[#via-[#aab2ff]]   to-[#eca0ff]  text-3xl md:text-4xl font-bold mb-8">
+        <h2 className="text-center text-transparent select-none bg-gradient-to-r bg-clip-text from-[#ffff] via=[#via-[#aab2ff]] to-[#eca0ff] text-3xl md:text-4xl font-bold mb-8">
           My Skills
         </h2>
         <p className="text-gray-400 mb-12 max-w-xl mx-auto">
@@ -65,7 +64,6 @@ const Skills = () => {
           high-quality applications.
         </p>
 
-        {/* Skill Icons and Descriptions */}
         <div className="flex flex-wrap justify-center gap-12">
           {skills.map((skill, index) => (
             <motion.div
@@ -74,23 +72,20 @@ const Skills = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: index * 0.2 }}
               whileHover={{
-                scale: 1.2,
+                scale: 1.05, // Reduced from 1.2 to 1.05
                 boxShadow: `0px 0px 20px ${skill.shadowColor}`,
               }}
               whileTap={{ scale: 0.95 }}
               className="flex flex-col items-center transition-transform duration-300 ease-in-out"
             >
-              {/* Skill Icon */}
               <Image
                 src={skill.icon}
                 alt={skill.name}
-                width={64} // Adjust size as needed
-                height={64} // Adjust size as needed
+                width={64}
+                height={64}
                 className="object-contain"
               />
-              {/* Skill Name */}
               <h3 className="text-white text-lg mt-4">{skill.name}</h3>
-              {/* Skill Description */}
               <p className="text-sm text-gray-400 mt-2 max-w-xs">
                 {skill.description}
               </p>
@@ -100,6 +95,4 @@ const Skills = () => {
       </div>
     </section>
   );
-};
-
-export default Skills;
+}
