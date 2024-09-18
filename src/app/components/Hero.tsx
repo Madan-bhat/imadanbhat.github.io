@@ -35,11 +35,13 @@ const Hero = () => {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="text-4xl sm:text-5xl md:text-6xl font-extrabold"
           >
-            <span className="bg-gradient-to-r from-blue-400 via-teal-400 to-pink-400 bg-clip-text text-transparent">
+            <span className=" text-white bg-gradient-to-r  from-blue-400 via-teal-400 to-pink-400 bg-clip-text text-transparent">
               Hi there, I'm
             </span>
             <br />
-            <span className="text-white">Madan Bhat</span>
+            <span className="bg-gradient-to-r  from-blue-400 via-teal-400 to-pink-400 bg-clip-text text-transparent">
+              Madan Bhat
+            </span>
           </motion.h1>
 
           <motion.p

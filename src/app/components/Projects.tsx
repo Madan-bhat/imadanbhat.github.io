@@ -78,7 +78,7 @@ const Projects = () => {
           initial={{ opacity: 0, y: -50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="text-center text-4xl md:text-5xl font-bold mb-4"
+          className="text-center bg-gradient-to-r  from-blue-400 via-teal-400 to-pink-400 bg-clip-text text-transparent text-4xl md:text-5xl font-bold mb-4"
         >
           Things I've Built
         </motion.h2>
