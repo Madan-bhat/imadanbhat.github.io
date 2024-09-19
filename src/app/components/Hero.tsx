@@ -1,134 +1,162 @@
+"use client";
+
 import React from "react";
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
-import illustrationImage from "@/app/images/me.svg";
-import InstagramIcon from "@/app/images/insta.svg";
-import TwitterIcon from "@/app/images/twitter.svg";
-import GitHubIcon from "@/app/images/github.svg";
-import ThreadsIcon from "@/app/images/thread.svg";
+import { Twitter, Github, Linkedin, Instagram } from "lucide-react";
+import ME from "@/app/images/me.jpg";
+
+const fadeInFromTop = {
+  hidden: { opacity: 0, y: -30 },
+  visible: { opacity: 1, y: 0 },
+};
+
+const fadeInFromBottom = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { opacity: 1, y: 0 },
+};
+
+const scaleIn = {
+  hidden: { opacity: 0, scale: 0.8 },
+  visible: { opacity: 1, scale: 1 },
+};
+
+const bounceHover = {
+  hover: { scale: 1.2, transition: { type: "spring", stiffness: 300 } },
+};
+
+const scrollButtonHover = {
+  hover: {
+    y: 10,
+    transition: { type: "spring", stiffness: 200 },
+  },
+};
 
 const Hero = () => {
+  const { scrollY } = useScroll();
+
+  // Parallax effect for different elements
+  const backgroundY = useTransform(scrollY, [0, 300], ["0%", "50%"]);
+  const imageY = useTransform(scrollY, [0, 300], ["0%", "-10%"]);
+  const textY = useTransform(scrollY, [0, 300], ["0%", "20%"]);
+
   const socialLinks = [
     {
-      href: "https://www.instagram.com/madan___2007",
-      icon: InstagramIcon,
-      alt: "Instagram",
+      href: "https://instagram.com/madan___2007",
+      icon: Instagram,
+      label: "Instagram",
     },
-    { href: "https://x.com/imadanbhat", icon: TwitterIcon, alt: "Twitter" },
-    { href: "https://github.com/Madan-Bhat", icon: GitHubIcon, alt: "GitHub" },
+    { href: "https://twitter.com/imadanbhat", icon: Twitter, label: "Twitter" },
+    { href: "https://github.com/Madan-Bhat", icon: Github, label: "GitHub" },
     {
-      href: "https://www.threads.net/@madan___2007",
-      icon: ThreadsIcon,
-      alt: "Threads",
+      href: "https://linkedin.com/in/madan-bhat",
+      icon: Linkedin,
+      label: "LinkedIn",
     },
   ];
 
   return (
-    <section className="relative w-full min-h-screen flex flex-col items-center justify-center bg-black text-white overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-r h-20 blur-3xl -top-20 from-blue-300 via-teal-400 to-pink-500 opacity-50"></div>
+    <section className="relative bg-animated w-full min-h-screen text-white flex flex-col justify-center items-center p-8 overflow-hidden">
+      {/* Enhanced top light shadow */}
+      <motion.div
+        className="absolute inset-0 h-80 -top-40 bg-gradient-to-b from-white to-transparent opacity-40 blur-2xl pointer-events-none"
+        style={{ y: backgroundY }}
+      ></motion.div>
 
-      <div className="relative z-10 flex flex-col md:flex-row items-center justify-center w-full h-full px-4 sm:px-6 md:px-8 max-w-7xl mx-auto">
-        <div className="flex flex-col mt-8 items-center md:items-start text-center md:text-left w-full md:w-1/2 space-y-6">
-          <motion.h1
-            initial={{ opacity: 0, y: -50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-4xl sm:text-5xl md:text-6xl font-extrabold"
-          >
-            <span className=" text-white bg-gradient-to-r  from-blue-400 via-teal-400 to-pink-400 bg-clip-text text-transparent">
-              Hi there, I'm
-            </span>
-            <br />
-            <span className="bg-gradient-to-r  from-blue-400 via-teal-400 to-pink-400 bg-clip-text text-transparent">
-              Madan Bhat
-            </span>
-          </motion.h1>
-
-          <motion.p
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="text-base sm:text-lg md:text-xl mb-6 max-w-lg text-gray-300 leading-relaxed"
-          >
-            I'm a passionate developer with 3 years of experience in creating
-            seamless and intuitive digital experiences. I am good at ReactJS,
-            React Native, and JavaScript, and I'm always eager to learn and
-            build innovative solutions.
-          </motion.p>
-
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
-            className="flex space-x-6 mb-8"
-          >
-            {socialLinks.map((link, index) => (
-              <motion.a
-                key={index}
-                href={link.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
-                className="transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/20"
-              >
-                <Image
-                  src={link.icon}
-                  alt={link.alt}
-                  width={32}
-                  height={32}
-                  className="object-contain"
-                />
-              </motion.a>
-            ))}
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.8 }}
-            className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto"
-          >
-            <motion.a
-              href="#projects"
-              className="group relative px-6 py-3 bg-white text-black font-semibold rounded-md shadow-lg transition duration-300 text-center overflow-hidden"
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-            >
-              <span className="relative z-10">View My Projects</span>
-              <span className="absolute inset-0 bg-gray-200 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300"></span>
-            </motion.a>
-            <motion.a
-              href="mailto:imadanbhat@gmail.com"
-              className="group relative px-6 py-3 border-2 border-white text-white font-semibold rounded-md transition duration-300 text-center overflow-hidden"
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-            >
-              <span className="relative z-10">Get In Touch</span>
-              <span className="absolute inset-0 bg-white transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300"></span>
-              <span className="absolute inset-0 bg-gray-800 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300 delay-75"></span>
-            </motion.a>
-          </motion.div>
-        </div>
-
-        <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1.1 }}
-          transition={{ duration: 1 }}
-          className="w-full md:w-1/2 mt-12 md:mt-0 flex justify-center items-center"
+      {/* Main Section */}
+      <div className="flex flex-col justify-center items-center w-full space-y-6">
+        {/* Name */}
+        <motion.h1
+          initial="hidden"
+          animate="visible"
+          variants={fadeInFromTop}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="text-5xl mb-4 md:text-7xl font-bold leading-tight text-center"
+          style={{
+            textShadow: "0 4px 20px rgba(255, 255, 255, 0.5)",
+            y: textY,
+          }}
         >
-          <div className="relative w-full max-w-xs sm:max-w-sm md:max-w-md h-64 sm:h-80 md:h-[500px]">
+          Hi, I'm Madan Bhat
+        </motion.h1>
+
+        {/* Title */}
+        <motion.h2
+          initial="hidden"
+          animate="visible"
+          variants={fadeInFromBottom}
+          transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
+          className="text-xl mb-4 md:text-2xl text-gray-300 text-center"
+          style={{
+            textShadow: "0 4px 15px rgba(255, 255, 255, 0.5)",
+            y: textY,
+          }}
+        >
+          Digital Designer & Web Developer
+        </motion.h2>
+
+        {/* Center Circular Image */}
+        <motion.div
+          initial="hidden"
+          animate="visible"
+          variants={scaleIn}
+          transition={{ duration: 1, ease: "easeOut", delay: 0.4 }}
+          className="relative w-40 h-40 md:w-72 md:h-72 rounded-full p-1"
+          style={{
+            background: "linear-gradient(145deg, #ffffff, #dcdcdc)",
+            boxShadow: "0 4px 20px rgba(255, 255, 255, 0.5)",
+            borderRadius: "100%",
+            y: imageY,
+          }}
+        >
+          <div className="relative w-full h-full rounded-full overflow-hidden border-2 border-transparent">
             <Image
-              src={illustrationImage}
-              alt="Madan Bhat Illustration"
+              src={ME}
+              alt="Madan Bhat"
               layout="fill"
-              objectFit="contain"
-              quality={100}
-              className="object-center"
+              objectFit="cover"
+              className="rounded-full"
             />
           </div>
         </motion.div>
+
+        <motion.div
+          initial="hidden"
+          animate="visible"
+          variants={fadeInFromBottom}
+          transition={{ duration: 0.8, ease: "easeOut", delay: 0.6 }}
+          className="flex items-center  space-x-2 mt-24"
+          style={{ y: textY }}
+        >
+          <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+          <p className="text-sm md:text-base text-gray-400">
+            Available for full-time positions
+          </p>
+        </motion.div>
       </div>
+
+      <motion.div
+        initial="hidden"
+        animate="visible"
+        variants={fadeInFromBottom}
+        transition={{ duration: 0.8, ease: "easeOut", delay: 0.8 }}
+        className="absolute bottom-8 p-8 flex space-x-6"
+      >
+        {socialLinks.map((link, index) => (
+          <motion.a
+            key={index}
+            href={link.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-white hover:text-gray-300 transition-colors"
+            aria-label={link.label}
+            variants={bounceHover}
+            whileHover="hover"
+          >
+            <link.icon size={24} />
+          </motion.a>
+        ))}
+      </motion.div>
     </section>
   );
 };
