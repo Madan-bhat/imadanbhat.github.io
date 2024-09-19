@@ -1,11 +1,12 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
 import { Twitter, Github, Linkedin, Instagram } from "lucide-react";
 import ME from "@/app/images/me.jpg";
 
+// Animations
 const fadeInFromTop = {
   hidden: { opacity: 0, y: -30 },
   visible: { opacity: 1, y: 0 },
@@ -32,8 +33,26 @@ const scrollButtonHover = {
   },
 };
 
+// List of skills
+const skills = [
+  "Node.js",
+  "React",
+  "React Native",
+  "Git",
+  "Firebase",
+  "TailwindCSS",
+  "Next.js",
+];
+
+// Helper function to generate random position
+const randomPosition = () => ({
+  top: `${Math.random() * 80 + 10}%`, // Random positions from 10% to 90%
+  left: `${Math.random() * 80 + 10}%`,
+});
+
 const Hero = () => {
   const { scrollY } = useScroll();
+  const [skillPositions, setSkillPositions] = useState([]);
 
   // Parallax effect for different elements
   const backgroundY = useTransform(scrollY, [0, 300], ["0%", "50%"]);
@@ -55,6 +74,12 @@ const Hero = () => {
     },
   ];
 
+  // Generate random positions for the skills and ensure they're within bounds
+  useEffect(() => {
+    const positions = Array.from({ length: 15 }).map(() => randomPosition());
+    setSkillPositions(positions);
+  }, []);
+
   return (
     <section className="relative bg-animated w-full min-h-screen text-white flex flex-col justify-center items-center p-8 overflow-hidden">
       {/* Enhanced top light shadow */}
@@ -62,6 +87,22 @@ const Hero = () => {
         className="absolute inset-0 h-80 -top-40 bg-gradient-to-b from-white to-transparent opacity-40 blur-2xl pointer-events-none"
         style={{ y: backgroundY }}
       ></motion.div>
+
+      {skillPositions.map((position, index) => (
+        <motion.div
+          key={index}
+          className="absolute bg-gray-700 p-2 -z-10 rounded-md shadow-lg text-sm md:text-base opacity-50"
+          style={{
+            top: position.top,
+            left: position.left,
+          }}
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 0.5, scale: 1 }}
+          transition={{ duration: 1.2, ease: "easeOut" }}
+        >
+          {skills[index % skills.length]} {/* Repeating the skills */}
+        </motion.div>
+      ))}
 
       {/* Main Section */}
       <div className="flex flex-col justify-center items-center w-full space-y-6">
@@ -92,7 +133,7 @@ const Hero = () => {
             y: textY,
           }}
         >
-          Digital Designer & Web Developer
+          Mobile App & Web Developer
         </motion.h2>
 
         {/* Center Circular Image */}
@@ -120,12 +161,13 @@ const Hero = () => {
           </div>
         </motion.div>
 
+        {/* Availability */}
         <motion.div
           initial="hidden"
           animate="visible"
           variants={fadeInFromBottom}
           transition={{ duration: 0.8, ease: "easeOut", delay: 0.6 }}
-          className="flex items-center  space-x-2 mt-24"
+          className="flex items-center space-x-2 mt-24"
           style={{ y: textY }}
         >
           <div className="w-3 h-3 bg-green-500 rounded-full"></div>
@@ -135,6 +177,9 @@ const Hero = () => {
         </motion.div>
       </div>
 
+      {/* Randomly Positioned Skill Chips */}
+
+      {/* Social Links */}
       <motion.div
         initial="hidden"
         animate="visible"
