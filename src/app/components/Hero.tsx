@@ -88,22 +88,6 @@ const Hero = () => {
         style={{ y: backgroundY }}
       ></motion.div>
 
-      {skillPositions.map((position, index) => (
-        <motion.div
-          key={index}
-          className="absolute bg-gray-700 p-2 -z-10 rounded-md shadow-lg text-sm md:text-base opacity-50"
-          style={{
-            top: position.top,
-            left: position.left,
-          }}
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 0.5, scale: 1 }}
-          transition={{ duration: 1.2, ease: "easeOut" }}
-        >
-          {skills[index % skills.length]} {/* Repeating the skills */}
-        </motion.div>
-      ))}
-
       {/* Main Section */}
       <div className="flex flex-col justify-center items-center w-full space-y-6">
         {/* Name */}

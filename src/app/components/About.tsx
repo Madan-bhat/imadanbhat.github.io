@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
-import Me_Small from "@/app/images/me_small.webp";
+import Me_Small from "@/app/images/me.jpg";
 import { FaCheck } from "react-icons/fa";
 
 const About = () => {
@@ -27,19 +27,17 @@ const About = () => {
                 height={108}
                 width={108}
                 alt="Madan Bhat"
-                className=" rounded-full object-cover shadow-lg"
+                className="rounded-full object-cover shadow-lg"
               />
             </motion.div>
 
-            {/* Text Info with Max Width */}
+            {/* Text Info */}
             <div style={{ maxWidth: "800px" }}>
               <h3 className="text-2xl font-bold text-white mb-2">Madan Bhat</h3>
               <p className="text-gray-400 mb-4">
-                I'm a dedicated software developer with over 3 years of
-                experience. My expertise lies in building intuitive mobile and
-                web applications that prioritize user experience and
-                performance. I’m passionate about bringing ideas to life through
-                clean, well-structured code.
+                I'm a software developer with 3+ years of experience, focusing
+                on user-friendly mobile and web applications with great
+                performance.
               </p>
 
               {/* More Info Button */}
